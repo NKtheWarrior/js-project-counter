@@ -1,34 +1,44 @@
 // buttons and counter text
-const counter = document.querySelector('#counter')
-const btns = document.querySelectorAll('.btn')
+const counter = document.querySelector("#counter");
+const btns = document.querySelectorAll(".btn");
 
 // initialize the count variable
-let count = 0
+let count = 0;
 
 btns.forEach((btn) => {
-	btn.addEventListener('click', (e) => {
-		const styles = e.currentTarget.classList
+  btn.addEventListener("click", (e) => {
+    const styles = e.currentTarget.classList;
 
-		if (styles.contains('increase')) {
-			count++
-		} else if (styles.contains('decrease')) {
-			count--
-		} else {
-			count = 0
-		}
+    if (styles.contains("increase")) {
+      count++;
+      counter.classList.add("up");
 
-		if (count > 0) {
-			counter.style.color = 'green'
-		}
+      setTimeout(() => {
+        counter.classList.remove("up");
+      }, 500);
+    } else if (styles.contains("decrease")) {
+      count--;
+      counter.classList.add("down");
 
-		if (count < 0) {
-			counter.style.color = 'red'
-		}
+      setTimeout(() => {
+        counter.classList.remove("down");
+      }, 500);
+    } else {
+      count = 0;
+    }
 
-		if (count === 0) {
-			counter.style.color = 'grey'
-		}
+    if (count > 0) {
+      counter.style.color = "green";
+    }
 
-		counter.textContent = count
-	})
-})
+    if (count < 0) {
+      counter.style.color = "red";
+    }
+
+    if (count === 0) {
+      counter.style.color = "grey";
+    }
+
+    counter.textContent = count;
+  });
+});
